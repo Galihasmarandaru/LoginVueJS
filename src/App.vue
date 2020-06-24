@@ -1,32 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view section="Login Form"></router-view>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  background: -webkit-linear-gradient(bottom, #144959, #07333c);
+  background-repeat: no-repeat;
 }
 
-#nav {
-  padding: 30px;
+.submit-btn {
+  background: -webkit-linear-gradient(right, #144959, #07333c);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 1px 1px #144959;
+  cursor: pointer;
+  color: white;
+  font-family: "Raleway SemiBold", sans-serif;
+  height: 42.3px;
+  margin: 0 auto;
+  margin-top: 50px;
+  transition: 0.25s;
+  width: 153px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  &:hover {
+    box-shadow: 0px 1px 5px #144959;
   }
 }
 </style>
