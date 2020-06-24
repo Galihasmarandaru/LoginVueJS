@@ -63,8 +63,8 @@ export default {
         this.email = "";
         this.password = "";
 
-        console.log(response.data);
-        this.$router.push({name: 'About', params: { userName: response.data.message}})
+        console.log(response.data.customer.name);
+        this.$router.push({name: 'About', params: { userName: response.data.name }})
       } catch (e) {
         console.log(e);
       }
