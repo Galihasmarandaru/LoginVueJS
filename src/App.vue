@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view section="Login Form"></router-view>
+    <router-view sectionSignin="Login Form"></router-view>
   </div>
 </template>
 

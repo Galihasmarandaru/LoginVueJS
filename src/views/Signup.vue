@@ -1,10 +1,22 @@
+<!-- v-model dipakai untuk input ke api -->
 <template>
   <div class="section">
     <div class="section-login">
-      <h3 class="section-login__title">{{ sectionSignin }}</h3>
+      <h3 class="section-login__title">Signup Form</h3>
       <div class="section-login__title--underline"></div>
       <form @submit.prevent="signin" class="form">
-        <label for="email" style="padding-top:13px">&nbsp;Email</label>
+        <label for="username" style="padding-top:13px">&nbsp;Username</label>
+        <input
+          v-model="form.name"
+          id="uname"
+          class="section-login__input"
+          type="text"
+          name="uname"
+          autocomplete="on"
+          required
+        />
+        <div class="section-login__input--underline"></div>
+        <label for="email" style="padding-top:22px">&nbsp;Email</label>
         <input
           v-model="form.email"
           id="email"
@@ -27,28 +39,21 @@
         />
         <div class="section-login__input--underline"></div>
 
-        <a href="#">
-          <legend id="forgot-pass" class="section-login__forgot">Forgot password?</legend>
-        </a>
-
-        <input class="submit-btn" type="submit" name="submit" value="LOGIN" />
-        <a href="/signup" id="signup" class="section-login__signup">Don't have account yet?</a>
+        <input class="submit-btn" type="submit" name="submit" value="SIGNUP" />
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  name: "login",
-  props: {
-    sectionSignin: String
-  },
+  name: "signup",
   data() {
     return {
       form: {
+        name: "",
         email: "",
         password: ""
       }
@@ -58,13 +63,14 @@ export default {
     async signin() {
       try {
         const response = await axios
-          .post("https://dev.api.hoonian.com/api/login", this.form)
+          .post("https://dev.api.hoonian.com/api/signup", this.form)
           .then(response => (this.info = response));
+        this.name = "";
         this.email = "";
         this.password = "";
 
         console.log(response.data);
-        this.$router.push({name: 'About', params: { userName: response.data.customer.name }})
+        this.$router.push({name: 'Login'})
       } catch (e) {
         console.log(e);
       }
