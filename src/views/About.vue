@@ -2,26 +2,26 @@
   <div class="about">
     <div>
       <div v-if="warningZone">Are you still there</div>
-      <p> Welcome, {{ $route.params.userName }}</p>  
+      <p>Welcome, {{ $route.params.userName }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'logout',
+  name: "logout",
   data: function() {
     return {
-      events: ['click', 'mousemove', 'scroll', 'keypress', 'load'],
+      events: ["click", "mousemove", "scroll", "keypress", "load"],
 
       warningTimer: null,
       logoutTimer: null,
-      warningZone: false,
-    }
+      warningZone: false
+    };
   },
 
   mounted() {
-    this.events.forEach(function(event){
+    this.events.forEach(function(event) {
       window.addEventListener(event, this.resetTimer);
     }, this);
 
@@ -36,30 +36,30 @@ export default {
     this.resetTimer();
   },
 
-   methods: {
-     setTimers: function() {
-       this.warningTimer = setTimeout(this.warningMessage, 4 * 1000);
-       this.logoutTimer = setTimeout(this.logoutUser, 10 * 1000);
+  methods: {
+    setTimers: function() {
+      this.warningTimer = setTimeout(this.warningMessage, 4 * 1000);
+      this.logoutTimer = setTimeout(this.logoutUser, 10 * 1000);
 
-       this.warningZone = false;
-     },
+      this.warningZone = false;
+    },
 
-     warningMessage: function() {
-       this.warningZone = true;
-     },
+    warningMessage: function() {
+      this.warningZone = true;
+    },
 
-     logoutUser: function() {
-       this.$router.push({name: 'Login'})
-     },
+    logoutUser: function() {
+      this.$router.push({ name: "Login" });
+    },
 
-     resetTimer: function() {
-       clearTimeout(this.warningTimer);
-       clearTimeout(this.logoutTimer);
+    resetTimer: function() {
+      clearTimeout(this.warningTimer);
+      clearTimeout(this.logoutTimer);
 
-       this.setTimers();
-     }
-   }
-}
+      this.setTimers();
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">
