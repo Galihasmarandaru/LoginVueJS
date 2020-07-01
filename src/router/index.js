@@ -13,7 +13,6 @@ Vue.use(VueRouter)
     component: Login
   },
   {
-    // path: '/about/:userName',
     path: '/about/',
     name: 'About',
     component: About,
