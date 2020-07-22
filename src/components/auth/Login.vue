@@ -4,13 +4,13 @@
       <h3 class="section-login__title">{{ sectionSignin }}</h3>
       <div class="section-login__title--underline"></div>
       <form @submit.prevent="signin" class="form">
-        <label for="email" style="padding-top:13px">&nbsp;Email</label>
+        <label for="phone" style="padding-top:13px">&nbsp;phone</label>
         <input
-          v-model="form.email"
-          id="email"
+          v-model="phone_number"
+          id="phone"
           class="section-login__input"
-          type="email"
-          name="email"
+          type="number"
+          name="phone"
           autocomplete="on"
           required
         />
@@ -18,7 +18,7 @@
 
         <label for="password" style="padding-top:22px">&nbsp;Password</label>
         <input
-          v-model="form.password"
+          v-model="password"
           id="password"
           class="section-login__input"
           type="password"
@@ -39,8 +39,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: "login",
   props: {
@@ -48,23 +46,27 @@ export default {
   },
   data() {
     return {
-      form: {
-        email: "",
-        password: ""
-      }
+      phone_number: "",
+      password: ""
     };
   },
   methods: {
     async signin() {
       try {
-        const response = await axios
-          .post("https://dev.api.hoonian.com/api/login", this.form)
-          .then(response => (this.info = response));
-        this.email = "";
-        this.password = "";
-
-        console.log(response.data);
-        this.$router.push({name: 'About', params: { userName: response.data.customer.name }})
+        const formData = {
+          phone_number: this.phone_number,
+          password: this.password
+        };
+        this.$store.dispatch("login", {
+          phone_number: formData.phone_number,
+          password: formData.password
+        });
+        this.$router.push({
+          name: "Admin",
+          params: {
+            userName: formData.phone
+          }
+        });
       } catch (e) {
         console.log(e);
       }

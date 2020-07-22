@@ -4,7 +4,19 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "app"
+  // created() {
+  //   this.$store.dispatch("tryAutoLogin");
+  // }
+};
+</script>
+
 <style lang="scss">
+// * {
+//   margin: 0 !important;
+// }
 body {
   background: -webkit-linear-gradient(bottom, #144959, #07333c);
   background-repeat: no-repeat;

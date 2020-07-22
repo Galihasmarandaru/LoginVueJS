@@ -1,33 +1,57 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Login from '../views/Login.vue'
-import Signup from '../views/Signup.vue'
-import About from '../views/About.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Login from '../components/auth/Login.vue';
+import Signup from '../components/auth/Signup.vue';
+import Dashboard from '../components/dashboard/Dashboard.vue';
+import view360 from '../components/360/view360.vue';
+import Admin from '../components/dashboard/Admin.vue';
 
-Vue.use(VueRouter)
+import Floor from '../components/floor_plan/floor.vue';
+import Utils from '../components/utils_ex/utils_ex.vue';
 
-  const routes = [
+Vue.use(VueRouter);
+
+const routes = [
   {
     path: '/',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
-    path: '/about/',
-    name: 'About',
-    component: About,
-  }, 
+    path: '/Dashboard/',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
   {
     path: '/signup/',
     name: 'Signup',
-    component: Signup
-  }
-]
-
+    component: Signup,
+  },
+  {
+    path: '/admin/',
+    name: 'Admin',
+    component: Admin,
+  },
+  {
+    path: '/three/',
+    name: 'Three',
+    component: view360,
+  },
+  {
+    path: '/floor/',
+    name: 'Floor',
+    component: Floor,
+  },
+  {
+    path: '/utils/',
+    name: 'Utils',
+    component: Utils,
+  },
+];
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

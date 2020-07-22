@@ -1,13 +1,13 @@
 <!-- v-model dipakai untuk input ke api -->
 <template>
-  <div class="section">
+  <div id="signup" class="section">
     <div class="section-login">
       <h3 class="section-login__title">Signup Form</h3>
       <div class="section-login__title--underline"></div>
-      <form @submit.prevent="signin" class="form">
+      <form @submit.prevent="signup" class="form">
         <label for="username" style="padding-top:13px">&nbsp;Username</label>
         <input
-          v-model="form.name"
+          v-model="name"
           id="uname"
           class="section-login__input"
           type="text"
@@ -16,21 +16,19 @@
           required
         />
         <div class="section-login__input--underline"></div>
-        <label for="email" style="padding-top:22px">&nbsp;Email</label>
+        <label for="password" style="padding-top:22px">&nbsp;Account Number</label>
         <input
-          v-model="form.email"
-          id="email"
+          v-model="account_number"
+          id="password"
           class="section-login__input"
-          type="email"
-          name="email"
-          autocomplete="on"
+          type="number"
+          name="password"
           required
         />
         <div class="section-login__input--underline"></div>
-
         <label for="password" style="padding-top:22px">&nbsp;Password</label>
         <input
-          v-model="form.password"
+          v-model="password"
           id="password"
           class="section-login__input"
           type="password"
@@ -46,31 +44,24 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "signup",
   data() {
     return {
-      form: {
-        name: "",
-        email: "",
-        password: ""
-      }
+      name: "",
+      account_number: "",
+      password: ""
     };
   },
   methods: {
-    async signin() {
+    async signup() {
       try {
-        const response = await axios
-          .post("https://dev.api.hoonian.com/api/signup", this.form)
-          .then(response => (this.info = response));
-        this.name = "";
-        this.email = "";
-        this.password = "";
-
-        console.log(response.data);
-        this.$router.push({name: 'Login'})
+        const formData = {
+          name: this.name,
+          account_number: this.account_number,
+          password: this.password
+        };
+        this.$store.dispatch("signup", formData);
       } catch (e) {
         console.log(e);
       }
